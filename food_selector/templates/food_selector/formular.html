@@ -1,0 +1,8 @@
+<form action="{% url 'food_selector:result' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="item_name">Aliment à substituer</label>
+      <input type="text" name="item_name" maxlength="100" id="item_name">
+      <button type="submit" class="btn btn-primary btn-sm">Chercher un substitut</button>
+    </div>
+</form>

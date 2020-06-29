@@ -1,0 +1,42 @@
+{% extends 'food_selector/base.html' %}
+
+{% block S1A1 %}
+<section class="flex-column col-lg-12 text-center" id="itemBox">
+    <h1 class="bg-moufri">Détails pour le produit:</h1>
+    <article class="container col-lg-12 bg-roichoco">
+        <h2 class="col-lg-12 text-center"><br/>{{ food_item.name }}</h2>
+        <br/> <br/>
+        <div class="d-flex flex-column text-center col-lg-12" id="substituteBox">
+            <p> 
+                <img src={{food_item.picture}} alt="Photo de "{{ food_item.name }}/>
+            </p>
+            <p>
+                Produit par: {{food_item.brand}}
+            </p>
+            <p>
+                Nutriscore:{{food_item.nutriscore}}<br/>
+            </p>
+            <p>
+                Composition:<br/>
+                {{food_item.description}}
+            </p>
+            <p>
+                Allergène(s) présent(s) dans ce produit:
+                {{food_item.allergens}}
+            </p>
+            <p>
+                Ce produit est disponible dans le/les magasins suivants:<br/>
+                {{food_item.store}} 
+            </p>
+            <p>
+                Plus d'informations ici:  
+                <a href="https://fr.openfoodfacts.org/produit/{{food_item.url_OpenFF}}">Lien Openfoodfact</a>
+            </p>
+        </div>
+        {% if user.is_authenticated %}
+        <button class="btn btn-outline-food_selector btn-lg btn-block saveItem"><a href="/food_selector/save/{{food_item.id}}">Sauvegarder</a>
+        </button>
+        {% endif %}
+        
+    </article></section>
+{% endblock %}

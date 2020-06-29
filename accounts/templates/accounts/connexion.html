@@ -1,0 +1,27 @@
+
+{% extends 'food_selector/base.html' %}
+
+
+{% block S1A1 %}<section class="flex-column col-lg-12 text-center" id="accountsBox">
+    <h1 class="bg-moufri">Se connecter</h1>
+    <article class="container col-lg-12 bg-roichoco">
+        <br/><br/>
+        {% if error %}
+        <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        Vous êtes connecté, {{ user.username }} !
+        {% else %}
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Se connecter" class="btn btn-outline-food_selector btn-lg btn-block" />
+            <br/>
+            <button class="btn"><a style="color:black" href="{% url 'password_reset' %}">
+                Mot de passe perdu?</a>
+        </form>
+        {% endif %}
+    <br/><br/>
+    </article>
+</section>{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'food_selector/base.html' %}
+
+{% block S1A1 %}<section class="row text-center col-lg-12" id="accountBox">
+    <h1 class="col-lg-12 bg-moufri">Mon compte<br/></h1>
+    <article class="container d-flex flex-column col-sm-12 col-lg-6">
+        <br/><br/><h2>Mes informations</h2>
+        <br/><br/>
+        <div class="text-left">
+            <p><button class="btn bg-bonrig">Pseudo:</button>    {{user.username}}</p>
+            <p><button class="btn bg-bonrig">Prénom:</button>    {{user.first_name}}</p>
+            <p><button class="btn bg-bonrig">Nom:</button>       {{user.last_name}}</p>
+            <p><button class="btn bg-bonrig">Email:</button>     {{user.email}}</p>
+            <br/><br/>
+        </div>
+    </article>
+
+    <article class="container col-sm-12 col-lg-6 bg-roichoco">
+        <br/><br/>
+        <h2>Ma dernière recherche</h2><br/><br/>
+        <div class="d-flex flex-column col-lg-12" >
+            <div class="row col-lg-12">
+            <p class=" text-center col-lg-12"> <img src={{latest_substitute.picture}} alt="Photo de "{{ latest_substitute.name }} />
+              Nutriscore: {{latest_substitute.nutriscore}}
+            </p>
+            </div>
+            <p class="text-center"><a href="/food_selector/item/{{latest_substitute.id }}">{{latest_substitute.name }}</a></p>
+        </div>
+        <button class="btn btn-outline-food_selector btn-sm btn-block">
+            <a href="{% url 'food_selector:history' %}"> Accéder à mon historique de recherche</a>
+        </button>
+        <br/><br/>
+    </article>
+</section>{% endblock %}

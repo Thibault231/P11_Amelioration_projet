@@ -1,0 +1,35 @@
+{% extends 'food_selector/base.html' %}
+
+
+{% block S1A1 %}<section class="flex-column col-lg-12 text-center bg-moufri">
+  <h1 class="text-uppercase text-white font-weight-bold"><br/>{{item_name.name}}</h1>
+  <div class="text-center">
+    <p><img src={{item_name.picture}} alt="Photo de "{{ item_name.name }}/></p>
+  </div>
+</section>{% endblock %}
+
+{% block S1A2 %}<section class="flex-column col-lg-12 text-center bg-roichoco" id="resultBox">
+  <h1><br/>Résultat(s) trouvé(s) pour votre recherche</h1>
+  <article class="container col-lg-12">
+    <h2><br/>Vous pouvez remplacer l'aliment {{item_name}} par:</h2>
+    <br/><br/>
+    <div class="row">
+        {% for substitute in substitute_list %}
+          <div class="d-flex flex-column col-lg-4 col-md-6 col-sm-12" id="substituteBox">
+            <p>
+              <h1><img src={{substitute.picture}} alt="Photo de "{{ substitute.name }} class="foodPicture" />
+              {{substitute.nutriscore}}</h1>
+            </p>
+            <p>
+              <a href="/food_selector/item/{{ substitute.id }}" class="itemResult">{{ substitute.name }}</a>
+            </p>
+            {% if user.is_authenticated %}
+            <button class="btn btn-outline-food_selector btn-lg btn-block saveItem">
+              <a href="/save_favorite/save/{{ substitute.id}}">Sauvegarder</a>
+            </button>
+            {% endif %}
+          </div>
+        {% endfor %}
+   </div>
+  </article>
+</section>{% endblock %}

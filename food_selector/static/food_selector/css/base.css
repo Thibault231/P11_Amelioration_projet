@@ -1,0 +1,33 @@
+header{
+    height: 100px;
+    background-color: #DE9440;
+}
+
+.bg-roichoco{
+    background-color: #C45525;
+}
+
+.bg-moufri{
+    background-color: #345A61;
+}
+
+.bg-bonrig{
+    background-color: #86EBE6;
+}
+
+.bg-camou{
+    background-color: #DE9440;
+}
+
+
+#section-result{
+    background-color: rgb(52, 90, 97) ;
+}
+
+#substituteBox{
+    margin-bottom: 15px;
+}
+
+.foodPicture{
+    float: left;
+}

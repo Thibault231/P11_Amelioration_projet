@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Substitute Food" />
+    <meta name="author" content="salgues thibault" />
+    <title>Pur-Beurre</title>
+
+    {% load static %}<!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'food_selector/assets/img/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" type="text/css" href="{% static 'food_selector/css/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'food_selector/css/base.css' %}" />
+</head>
+
+<body>
+     {% block nav %}
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container-fluid">
+            <div class="row col-lg-12">
+                <div class="row col-lg-4 col-md-6 col-sm-12">
+                    <img src="{% static 'food_selector/assets/img/favicon2.png' %}" class="floating-left" alt="logo" />
+                    <a class="navbar-brand js-scroll-trigger" href="{% url 'accounts:deconnexion' %}">
+                        food_selector
+                    </a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="row col-sm-12 col-md-6 col-lg-4">
+                    <form class="navbar-form navbar-right inline-form" action="{% url 'food_selector:result' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                        <input type="text" name="item_name" maxlength="100" class="item_name" id="item_name">
+                        <button type="submit" class="btn btn-primary btn-sm">Chercher un substitut</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row col-lg-4 col-md-6 col-sm-12">
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'index' %}" id='index'>
+                                <i class="fas fa-cookie-bite" title="Accueil"></i></a>
+                            </li>
+                            {% if user.is_anonymous %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:account_creation' %}" id='create'>
+                                <i class="far fa-user-circle" title="Creer un compte" ></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:connexion' %}" id='login'>
+                                <i class="fas fa-user text-center" title="Me connecter" ></i></a>
+                            </li>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:myaccount' %}" id='myaccount'>
+                                <i class="fas fa-user" title="Mon compte" ></i> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:deconnexion' %}" id='logout'>
+                                <i class="fas fa-sign-out-alt" title="Se deconnecter" ></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'save_favorite:history' %}"> 
+                                <img class="img-fluid" src="{% static 'food_selector/assets/img/carrot.png' %}" alt="carrot" title="Mes aliments sauvegardés" id='historical'/></a>
+                            </li>
+                            {% endif %} 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    <header>
+    {% block header %}
+    {% endblock %}</header>
+
+    {% block S1A1 %}
+    {% endblock %}
+
+    {% block S1A2 %}
+    {% endblock %}
+
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <h1 class="d-none">Our propositions</h1>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mt-0">Contactez nous:</h2>
+                        <hr class="divider my-4" />
+                        <p class="text-muted mb-5">
+                            Envoyez nous un email ou contactez nous par téléphone.
+                            Nous vous répondrons aussi vite que possible.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                        <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                    <div class="col-lg-4 mr-auto text-center">
+                        <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                        <a class="d-block" href="mailto:contact@food_selector.com">contact@food_selector.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% block footer %}
+    <footer>
+        <div class="row py-5 bg-camou">
+            <div class="col-lg-6 small text-center text-muted">
+                <a href="{% url 'food_selector:legal' %}">Mentions legales</a>
+            </div>
+            <div class="col-lg-6 small text-center text-muted">
+                Contact
+            </div>
+        </div>
+    </footer>
+        {% endblock %}
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'food_selector/js/scripts.js' %}" ></script>
+
+</body>
+</html>
+
