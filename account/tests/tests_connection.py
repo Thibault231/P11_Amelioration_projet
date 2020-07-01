@@ -9,7 +9,7 @@ from food_selector.models import Account, FoodItem, Category
 from food_selector.config import TESTS
 
 
-class accountsTestCase(TestCase):
+class accountTestCase(TestCase):
     """Class TestCase for tests functions.
 
     Functions:
@@ -21,7 +21,7 @@ class accountsTestCase(TestCase):
     -test_deconnexion_unlog_page(self)
     -test_myaccount_log_page(self)
     -test_myaccount_unlog_page(self)
-    -test_account_creation_accounts_page(self)
+    -test_account_creation_account_page(self)
     -test_right_account_creation_page(self):
 
     """
@@ -59,58 +59,58 @@ class accountsTestCase(TestCase):
         self.assertIsNot(response, True)
 
     def test_connexion_page(self):
-        """Test accounts to the page Connexion with
+        """Test account to the page Connexion with
         GET method and right args.
         """
-        response = self.client.get(reverse('accounts:connexion'))
+        response = self.client.get(reverse('account:connexion'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_deconnexion_log_page(self):
-        """Test deaccounts of a loged user with the view deconnexion
+        """Test deaccount of a loged user with the view deconnexion
         with GET method and right args.
         """
         self.client.login(
             email=TESTS['name1']+'@gmail.com',
             password=TESTS['name1'])
-        response = self.client.get(reverse('accounts:deconnexion'))
+        response = self.client.get(reverse('account:deconnexion'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_deconnexion_unlog_page(self):
-        """Test deaccounts of an unloged user with the view deconnexion
+        """Test deaccount of an unloged user with the view deconnexion
         with GET method and right args.
         """
-        response = self.client.get('accounts:deconnexion')
+        response = self.client.get('account:deconnexion')
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_myaccount_log_page(self):
-        """Test accounts to the page Myaccount of a connected user
+        """Test account to the page Myaccount of a connected user
         with GET method and right args.
         """
         self.client.login(
             email=TESTS['name1']+'@gmail.com',
             password=TESTS['name1'])
-        response = self.client.get(reverse('accounts:myaccount'))
+        response = self.client.get(reverse('account:myaccount'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_myaccount_unlog_page(self):
-        """Test accounts to the page Myaccount of an anonymous
+        """Test account to the page Myaccount of an anonymous
         user with GET method and right args.
         """
-        response = self.client.get('accounts:deconnexion')
+        response = self.client.get('account:deconnexion')
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
-    def test_account_creation_accounts_page(self):
+    def test_account_creation_account_page(self):
         """Test account creation on the page Account_creation of an
         anonymous user with GET method and right args.
         """
-        response = self.client.get(reverse('accounts:account_creation'))
+        response = self.client.get(reverse('account:account_creation'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_right_account_creation_page(self):
         """Test account creation on the page Account_creation of an
         anonymous user with GET method and wrong args.
         """
-        response = self.client.post(reverse('accounts:account_creation'), {
+        response = self.client.post(reverse('account:account_creation'), {
             'username': TESTS['name2'],
             'email': TESTS['name2']+'@gmail.com',
             'password1': TESTS['name2'],

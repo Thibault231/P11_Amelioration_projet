@@ -26,8 +26,8 @@ urlpatterns = [
      r'^$',
      views.index, name='index'),
     url(
-     r'^accounts/',
-     include(('accounts.urls', 'accounts'), namespace='accounts')),
+     r'^account/',
+     include(('account.urls', 'account'), namespace='account')),
     url(
      r'^food_selector/',
      include(('food_selector.urls', 'food_selector'), namespace='food_selector')),
@@ -37,8 +37,24 @@ urlpatterns = [
     url(
      r'^admin/',
      admin.site.urls),
-
-    path('accounts/', include('django.contrib.auth.urls')),
+    # urls for changing password
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
+     name='password_change_done'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), 
+     name='password_change'),
+    #urls reseting password
+    path('password_reset/',
+     auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'),
+     name="reset_password"),
+    path('password_reset_sent/', 
+     auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_sent.html'),
+     name="password_reset_done"),
+    path('reset/<uidb64>/<token>/',
+     auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_form.html'),
+     name="password_reset_confirm"),
+    path('reset_password_complete/',
+     auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_done.html'),
+     name="password_reset_complete"),
     
 ]
 

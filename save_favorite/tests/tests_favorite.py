@@ -36,7 +36,7 @@ class ViewsLoginTestCase(TestCase):
         self.account3 = Account.objects.create(user=self.user3)
 
     def test_right_save_log_page(self):
-        """Test the loging accounts to page Save
+        """Test the loging account to page Save
         """
         right_id = self.food3.id
         self.client.login(
@@ -45,7 +45,7 @@ class ViewsLoginTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_wrong_save_log_page(self):
-        """Test the loging accounts to page Save
+        """Test the loging account to page Save
         with wrong email.
         """
         self.client.login(
@@ -55,21 +55,21 @@ class ViewsLoginTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_right_save_unlog_page(self):
-        """Test the unloging accounts to page Save
+        """Test the unloging account to page Save
         """
         right_id = self.food3.id
         response = self.client.get('save_favorite:save', args=(right_id,))
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_wrong_save_unlog_page(self):
-        """Test the unloging accounts to page Save
+        """Test the unloging account to page Save
         with wrong email.
         """
         response = self.client.get('save_favorite:save', args=(10000,))
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_history_log_page(self):
-        """Test the loging accounts to page History
+        """Test the loging account to page History
         """
         self.client.login(
             email=TESTS['name1']+'@gmail.com',
@@ -78,7 +78,7 @@ class ViewsLoginTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_history_unlog_page(self):
-        """Test the unloging accounts to page Save
+        """Test the unloging account to page Save
         """
         response = self.client.get('save_favorite:history')
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])

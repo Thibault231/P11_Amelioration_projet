@@ -56,21 +56,21 @@
                             </li>
                             {% if user.is_anonymous %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:account_creation' %}" id='create'>
+                                <a class="nav-link" href="{% url 'account:account_creation' %}" id='create'>
                                 <i class="far fa-user-circle" title="Creer un compte" ></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:connexion' %}" id='login'>
+                                <a class="nav-link" href="{% url 'account:connexion' %}" id='login'>
                                 <i class="fas fa-user text-center" title="Me connecter" ></i></a>
                             </li>
                             {% endif %}
                             {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:myaccount' %}" id='myaccount'>
+                                <a class="nav-link" href="{% url 'account:myaccount' %}" id='myaccount'>
                                 <i class="fas fa-user" title="Mon compte" ></i> </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'accounts:deconnexion' %}" id='logout'>
+                                <a class="nav-link" href="{% url 'account:deconnexion' %}" id='logout'>
                                 <i class="fas fa-sign-out-alt" title="Se deconnecter" ></i></a>
                             </li>
                             <li class="nav-item">

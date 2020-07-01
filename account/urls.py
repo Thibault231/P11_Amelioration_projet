@@ -1,6 +1,6 @@
 # coding: utf-8
 """ Module managing urls of
-accounts APP for Django program.
+account APP for Django program.
 """
 from django.conf.urls import url
 from . import views

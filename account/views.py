@@ -32,7 +32,7 @@ def myaccount(request):
         'user': user,
         'latest_substitute': latest_substitute
     }
-    return render(request, 'accounts/myaccount.html', context)
+    return render(request, 'account/myaccount.html', context)
 
 
 def account_creation(request):
@@ -69,7 +69,7 @@ def account_creation(request):
                         Account.objects.create(user=user)
                         login(request, user)
 
-                        return render(request, 'accounts/myaccount.html')
+                        return render(request, 'account/myaccount.html')
 
                     error_email = True
 
@@ -87,7 +87,7 @@ def account_creation(request):
         "form": form
     }
 
-    return render(request, 'accounts/account_creation.html', context)
+    return render(request, 'account/account_creation.html', context)
 
 
 def connexion(request):
@@ -118,7 +118,7 @@ def connexion(request):
         "user": user,
         "form": form
     }
-    return render(request, 'accounts/connexion.html', context)
+    return render(request, 'account/connexion.html', context)
 
 
 @login_required

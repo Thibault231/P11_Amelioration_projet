@@ -29,10 +29,17 @@ SECRET_KEY = os.getenv("SKEY")
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
     ALLOWED_HOSTS = ['djangonutella.herokuapp.com']
+    # SMTP configuration
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = 'salgues231@gmail.com'
+    EMAIL_HOST_PASSWORD = ''
 else:
     DEBUG = True
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     ALLOWED_HOSTS = ['127.0.0.1']
+    # SMTP configuration
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Application definition
@@ -41,7 +48,7 @@ INSTALLED_APPS = [
     'save_favorite.apps.SaveFavoriteConfig',
     'db_commands.apps.DbCommandsConfig',
     'food_selector.apps.food_selectorConfig',
-    'accounts.apps.accountsConfig',
+    'account.apps.accountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ['accounts.autenticate.EmailAuth', ]
+AUTHENTICATION_BACKENDS = ['account.autenticate.EmailAuth', ]
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -142,7 +149,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'food_selector:connexion'
 
 INTERNAL_IPS = ['127.0.0.1']
-
 
 if os.environ.get('ENV') == 'PRODUCTION':
     # Static files settings

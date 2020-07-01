@@ -30,19 +30,19 @@ class ViewsTestCase(TestCase):
         self.food1.linked_cat.add(self.category1)
 
     def test_index_page(self):
-        """Test accounts to the page Index
+        """Test account to the page Index
         """
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_legal_page(self):
-        """Test accounts to the page Legal
+        """Test account to the page Legal
         """
         response = self.client.get(reverse('food_selector:legal'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_wrong_result_page(self):
-        """Test accounts to the page Result with
+        """Test account to the page Result with
         POST method and wrong args.
         """
         response = self.client.post(
@@ -51,7 +51,7 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_right_result_page(self):
-        """Test accounts to the page Result with
+        """Test account to the page Result with
         POST method and right args.
         """
         right_name = self.food1.name
@@ -61,7 +61,7 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_right_item_page(self):
-        """Test accounts to the page Item with
+        """Test account to the page Item with
         GET method and right args.
         """
         right_id = self.food1.id
@@ -69,7 +69,7 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_wrong_item_page(self):
-        """Test accounts to the page Item with
+        """Test account to the page Item with
         GET method and wrong args.
         """
         response = self.client.get(reverse('food_selector:item', args=(10000,)))

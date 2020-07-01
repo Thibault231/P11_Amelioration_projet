@@ -29,13 +29,13 @@ TESTS = {
     "UrlApp": "https://djangonutella.herokuapp.com/",
     "UrlResult": "https://djangonutella.herokuapp.com/food_selector/result/",
     "UrlHistory": "https://djangonutella.herokuapp.com/food_selector/history/",
-    "UrlAccount": "https://djangonutella.herokuapp.com/accounts/myaccount/",
+    "UrlAccount": "https://djangonutella.herokuapp.com/account/myaccount/",
     "UrlCreation":
-    "https://djangonutella.herokuapp.com/accounts/account_creation/",
+    "https://djangonutella.herokuapp.com/account/account_creation/",
     "UrlConnexion":
-    "https://djangonutella.herokuapp.com/accounts/connexion/",
+    "https://djangonutella.herokuapp.com/account/connexion/",
     "UrlItem": "https://djangonutella.herokuapp.com/food_selector/item/21/",
     "UrlSave": "https://djangonutella.herokuapp.com/food_selector/save/21/",
     "UrlDeconnexion":
-    "https://djangonutella.herokuapp.com/accounts/deconnexion/"
+    "https://djangonutella.herokuapp.com/account/deconnexion/"
 }

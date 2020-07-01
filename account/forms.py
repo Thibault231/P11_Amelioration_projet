@@ -1,5 +1,5 @@
 # coding: utf-8
-"""Create formular for accounts
+"""Create formular for account
 templates and views.
 """
 from django import forms
@@ -7,7 +7,7 @@ from django import forms
 
 class ConnexionForm(forms.Form):
     """Formular Class Form.
-    Used in accounts templates and views for login.
+    Used in account templates and views for login.
     """
     email = forms.CharField(label="E-mail:", max_length=30)
     password = forms.CharField(label="Password:", widget=forms.PasswordInput)
@@ -15,7 +15,7 @@ class ConnexionForm(forms.Form):
 
 class CountCreationForm(forms.Form):
     """Formular Class Form.
-    Used in accounts templates and views for account creation.
+    Used in account templates and views for account creation.
     """
     username = forms.CharField(label="User name:", max_length=30)
     first_name = forms.CharField(label="First_name:", max_length=50)

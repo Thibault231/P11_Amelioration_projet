@@ -69,7 +69,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
         driver.get(TESTS['UrlApp'])
         wait.until(EC.presence_of_element_located((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
-        wait.until(EC.presence_of_element_located((By.ID, "accountsBox")))
+        wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
         driver.find_element(By.NAME, "email").send_keys("azerty@gmail.com")
         driver.find_element(
             By.NAME, "password").send_keys("azerty" + Keys.RETURN)
@@ -104,7 +104,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
         driver.get(TESTS['UrlApp'])
         wait.until(EC.presence_of_element_located((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
-        wait.until(EC.presence_of_element_located((By.ID, "accountsBox")))
+        wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
         first_url = driver.current_url
 
         driver.find_element(By.NAME, "email").send_keys("azerty@gmail.com")
