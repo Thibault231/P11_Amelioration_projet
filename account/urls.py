@@ -13,4 +13,6 @@ urlpatterns = [
     url(
         r'^account_creation/$',
         views.account_creation, name='account_creation'),
+    url(r'^delete_confirmation/$',  views.delete_confirmation, name='delete_confirmation'),
+    url(r'^delete_user/$',  views.delete_user, name='delete_user'),
 ]

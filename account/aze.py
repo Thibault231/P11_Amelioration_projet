@@ -15,3 +15,5 @@
     
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
      name='password_reset_complete'),
+
+    https://github.com/Thibault231/P11_Amelioration_projet.git

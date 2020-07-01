@@ -17,8 +17,10 @@
         <h2>Gestion de mes informations</h2>
         <div class="text-left">
             <br/><br/>
-            <button class="btn bg-bonrig"><a style="color:black" href="{% url 'password_change' %}">
+            <p><button class="btn bg-bonrig"><a style="color:black" href="{% url 'password_change' %}"></p>
                 Changer mon mot de passe</a></button>
+                <p><button class="btn bg-bonrig"><a style="color:black" href="{% url 'account:delete_confirmation' %}"></p>
+                Supprimer mon compte</a></button>
         </div>
     </article>
 
