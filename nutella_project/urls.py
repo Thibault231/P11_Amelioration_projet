@@ -22,22 +22,13 @@ from food_selector import views
 
 
 urlpatterns = [
-    url(
-     r'^$',
-     views.index, name='index'),
-    url(
-     r'^account/',
-     include(('account.urls', 'account'), namespace='account')),
-    url(
-     r'^food_selector/',
-     include(('food_selector.urls', 'food_selector'), namespace='food_selector')),
-    url(
-    r'^save_favorite/',
-    include(('save_favorite.urls', 'save_favorite'), namespace='save_favorite')),
-    url(
-     r'^admin/',
-     admin.site.urls),
-
+    path('admin/', admin.site.urls),
+    path('account/', include('django.contrib.auth.urls')),
+    path('account/', include(('account.urls', 'app_name'), namespace='account')),
+    path('', views.index, name='index'),
+    path('food_selector/', include(('food_selector.urls', 'app_name'), namespace='food_selector')),
+    path('save_favorite/', include(('save_favorite.urls', 'app_name'), namespace='save_favorite')),
+   
     # urls for changing password
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
      name='password_change_done'),
