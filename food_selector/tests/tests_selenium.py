@@ -83,10 +83,10 @@ class TestUserTakesTheTest(LiveServerTestCase):
             By.ID, "id_password1").send_keys("azerty")
         driver.find_element(
             By.ID, "id_password2").send_keys("azerty" + Keys.RETURN)
-        
+
         wait.until(EC.presence_of_element_located((By.ID, "logout")))
         driver.find_element(By.ID, "logout").click()
- 
+
         wait.until(EC.presence_of_element_located((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
 
