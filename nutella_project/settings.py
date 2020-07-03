@@ -31,10 +31,10 @@ if os.environ.get('ENV') == 'PRODUCTION':
     ALLOWED_HOSTS = ['djangonutella.herokuapp.com']
     # SMTP configuration
     EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
+    EMAIL_PORT = os.getenv("PORT")
     EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = 'salgues231@gmail.com'
-    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_USER = os.getenv("USER")
+    EMAIL_HOST_PASSWORD = os.getenv("PASSWORD")
 else:
     DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1']
