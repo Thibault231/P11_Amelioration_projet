@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SKEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
-    ALLOWED_HOSTS = ['ameliorationnutella.herokuapp.com']
+    ALLOWED_HOSTS = ['amelioratenutella.herokuapp.com']
     # SMTP configuration
     EMAIL_HOST = os.getenv("EMAIL_HOST")
     EMAIL_PORT = os.getenv("EMAIL_PORT")
