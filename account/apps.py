@@ -1,10 +1,10 @@
 # coding: utf-8
-"""Define account APP
+"""Define Account APP
 """
 from django.apps import AppConfig
 
 
-class accountConfig(AppConfig):
-    """Create APP account.
+class AccountConfig(AppConfig):
+    """Create APP Account.
     """
     name = 'account'

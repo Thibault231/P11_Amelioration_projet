@@ -1,6 +1,6 @@
 # coding: utf-8
-"""[summary]Unitary tests for views.py functions which don't need
-user's loging.
+"""[summary]Unitary tests for views.py of account app's
+functions which don't need user's loging.
 """
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -9,7 +9,7 @@ from food_selector.models import Account, FoodItem, Category
 from food_selector.config import TESTS
 
 
-class accountTestCase(TestCase):
+class AccountTestCase(TestCase):
     """Class TestCase for tests functions.
 
     Functions:
@@ -115,4 +115,38 @@ class accountTestCase(TestCase):
             'email': TESTS['name2']+'@gmail.com',
             'password1': TESTS['name2'],
             'password2': TESTS['name2']})
+        self.assertEqual(response.status_code, TESTS['RightStatus'])
+
+    def test_right_delete_confirmation_page(self):
+        """Test account deletion on the page Delete_confirmation of a loged
+        user with GET method and wrong args.
+        """
+        self.client.login(
+            email=TESTS['name1']+'@gmail.com',
+            password=TESTS['name1'])
+        response = self.client.get(reverse('account:delete_confirmation'))
+        self.assertEqual(response.status_code, TESTS['RightStatus'])
+
+    def test_wrong_delete_confirmation_page(self):
+        """Test account deletion on the page Delete_confirmation of an
+        anonymous user with GET method and wrong args.
+        """
+        response = self.client.get('account:delete_confirmation')
+        self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
+
+    def test_wrong_delete_user_page(self):
+        """Test account deletion on the page Delete_done of an
+        anonymous user with GET method and wrong args.
+        """
+        response = self.client.get('account:delete_user')
+        self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
+
+    def test_right_delete_user_page(self):
+        """Test account deletion on the page Delete_done of a loged
+        user with GET method and wrong args.
+        """
+        self.client.login(
+            email=TESTS['name1']+'@gmail.com',
+            password=TESTS['name1'])
+        response = self.client.get(reverse('account:delete_user'))
         self.assertEqual(response.status_code, TESTS['RightStatus'])

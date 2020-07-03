@@ -5,9 +5,9 @@ Views:
 -history:@login_required
 """
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.db import transaction
+from django.shortcuts import render, get_object_or_404
 from food_selector.models import FoodItem, Account
+
 
 @login_required
 def save(request, item_id):
@@ -31,6 +31,7 @@ def save(request, item_id):
         'message': message
     }
     return render(request, 'save_favorite/save.html', context)
+
 
 @login_required
 def history(request):

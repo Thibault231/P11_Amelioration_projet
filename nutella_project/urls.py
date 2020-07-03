@@ -23,35 +23,61 @@ from food_selector import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('django.contrib.auth.urls')),
-    path('account/', include(('account.urls', 'app_name'), namespace='account')),
+    path(
+        'account/',
+        include(('django.contrib.auth.urls', 'app_name'), namespace='author')),
+    path(
+        'account/',
+        include(('account.urls', 'app_name'), namespace='account')),
     path('', views.index, name='index'),
-    path('food_selector/', include(('food_selector.urls', 'app_name'), namespace='food_selector')),
-    path('save_favorite/', include(('save_favorite.urls', 'app_name'), namespace='save_favorite')),
-   
-    # urls for changing password
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
-     name='password_change_done'),
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), 
-     name='password_change'),
+    path(
+        'food_selector/',
+        include(('food_selector.urls', 'app_name'), namespace='food_selector')),
+    path(
+        'save_favorite/',
+        include(('save_favorite.urls', 'app_name'), namespace='save_favorite')),
 
-    #urls reseting password
-    path('password_reset/',
-     auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'),
-     name="password_reset"),
-    path('password_reset/done/', 
-     auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'),
-     name="password_reset_done"),
-    path('reset/<uidb64>/<token>/',
-     auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'),
-     name="password_reset_confirm"),
-    path('reset/done/',
-     auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
-     name="password_reset_complete")
+    # urls for changing password
+    path(
+        'password_change/done/',
+        auth_views.PasswordChangeDoneView.as_view(
+            template_name='registration/password_change_done.html'),
+        name='password_change_done'),
+    path(
+        'password_change/',
+        auth_views.PasswordChangeView.as_view(
+            template_name='registration/password_change.html'),
+        name='password_change'),
+
+    # urls for reseting password
+    path(
+        'account/password_reset/',
+        auth_views.PasswordResetView.as_view(
+            template_name='registration/password_reset.html'),
+        name="password_reset"),
+    path(
+        'account/password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='registration/password_reset_done.html'),
+        name="password_reset_done"),
+    path(
+        'account/reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='registration/password_reset_confirm.html'),
+        name="password_reset_confirm"),
+    path(
+        'account/reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='registration/password_reset_complete.html'),
+        name="password_reset_complete")
 ]
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(
+            r'^__debug__/',
+            include(
+                debug_toolbar.urls,
+                namespace='debug_toolbar')),
     ] + urlpatterns

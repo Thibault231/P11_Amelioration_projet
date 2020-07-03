@@ -7,12 +7,9 @@ Views:
 -deconnexion(request):@login_required
 """
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from food_selector.models import FoodItem
-from django.shortcuts import get_list_or_404
 from food_selector.models import Account
 from .forms import ConnexionForm, CountCreationForm
 
@@ -31,8 +28,8 @@ def myaccount(request):
     try:
         substitute_list = list(account.history.all())
         latest_substitute = substitute_list[-1]
-    except:
-        latest_substitute = (get_list_or_404(FoodItem, name__icontains='pizza'))[0]
+    except IndexError:
+        latest_substitute = False
     context = {
         'user': user,
         'latest_substitute': latest_substitute
@@ -138,21 +135,31 @@ def deconnexion(request):
     logout(request)
     return render(request, 'food_selector/index.html')
 
-@login_required 
-def delete_confirmation(request):    
-    try:
-        user = request.user
-    except:
-      messages.error(request, "The user not found")    
+
+@login_required
+def delete_confirmation(request):
+    """Ask for confirmation user deleting
+    account.
+    Arguments:
+    -request {POST}
+    Returns:
+    -template -- delete_confirmation.html
+    """
     return render(request, 'account/delete_confirmation.html')
 
 
-@login_required 
-def delete_user(request):    
+@login_required
+def delete_user(request):
+    """Delete User account.
+    Arguments:
+    -request {POST}
+    Returns:
+    -template -- delete_done.html
+    """
     try:
         user = request.user
         user.delete()
         logout(request)
-    except:
-      messages.error(request, "The user not found")    
+    except ValueError:
+        print(request, "The user not found")
     return render(request, 'account/delete_done.html')

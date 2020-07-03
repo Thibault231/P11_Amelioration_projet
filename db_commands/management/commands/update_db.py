@@ -86,10 +86,10 @@ def Db_update(
          'Food items for category ',
          category,
          ': load from OpenFoodFact.')
-        print( len(food_items_list))
+        print(len(food_items_list))
 
         for food_item in food_items_list:
-            try:           
+            try:
                 fooditem_to_update = FoodItem.objects.get(
                     name=food_item.name)
                 fooditem_to_update.name = food_item.name
@@ -102,14 +102,14 @@ def Db_update(
                 fooditem_to_update.url_OpenFF = food_item.url_id
                 print('    Food item', food_item.name, ' updated.')
 
-            except:
+            except Exception:
                 new_food_item = food_item_creation(food_item)
                 print('    Create new FI:', new_food_item.name, ' ,ok')
                 for cat_to_link in food_item.category:
                     new_food_item.linked_cat.add(
-                    Category.objects.get(name=cat_to_link))
+                     Category.objects.get(name=cat_to_link))
                     print('   New FI Linked to categories: ok')
- 
+
             print('Update done for category: ', category)
     print('UPDATE: done')
 

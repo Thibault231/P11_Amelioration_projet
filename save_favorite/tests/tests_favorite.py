@@ -1,11 +1,11 @@
 # coding: utf-8
-"""[summary]Unitary Test views.py functions which use
-user's loging.
+"""[summary]Unitary Test views.py of save_favorite app's
+functions which use user's loging.
 """
 from django.contrib.auth.models import User
-from django.test import RequestFactory, TestCase
+from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from food_selector.models import Account, FoodItem, Category
+from food_selector.models import Account, Category, FoodItem
 from food_selector.config import TESTS
 
 
@@ -41,7 +41,8 @@ class ViewsLoginTestCase(TestCase):
         right_id = self.food3.id
         self.client.login(
             email=TESTS['name1']+'@gmail.com', password=TESTS['name1'])
-        response = self.client.get(reverse('save_favorite:save', args=(right_id,)))
+        response = self.client.get(
+            reverse('save_favorite:save', args=(right_id,)))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_wrong_save_log_page(self):
@@ -51,7 +52,8 @@ class ViewsLoginTestCase(TestCase):
         self.client.login(
             email=TESTS['name1']+'@gmail.com',
             password=TESTS['name1'])
-        response = self.client.get(reverse('save_favorite:save', args=(10000,)))
+        response = self.client.get(
+            reverse('save_favorite:save', args=(10000,)))
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])
 
     def test_right_save_unlog_page(self):

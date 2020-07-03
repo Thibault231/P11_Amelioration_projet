@@ -65,12 +65,14 @@ class ViewsTestCase(TestCase):
         GET method and right args.
         """
         right_id = self.food1.id
-        response = self.client.get(reverse('food_selector:item', args=(right_id,)))
+        response = self.client.get(
+            reverse('food_selector:item', args=(right_id,)))
         self.assertEqual(response.status_code, TESTS['RightStatus'])
 
     def test_wrong_item_page(self):
         """Test account to the page Item with
         GET method and wrong args.
         """
-        response = self.client.get(reverse('food_selector:item', args=(10000,)))
+        response = self.client.get(
+            reverse('food_selector:item', args=(10000,)))
         self.assertEqual(response.status_code, TESTS['UnfoundStatus'])

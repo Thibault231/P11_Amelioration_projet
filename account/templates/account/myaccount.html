@@ -27,6 +27,7 @@
     <article class="container col-sm-12 col-lg-6 bg-roichoco">
         <br/><br/>
         <h2>Ma dernière recherche</h2>
+        {% if latest_substitute %}
         <br/><br/>
         <div class="d-flex flex-column col-lg-12" >
             <div class="row col-lg-12">
@@ -40,6 +41,7 @@
             <a href="{% url 'save_favorite:history' %}"> Accéder à mon historique de recherche</a>
         </button>
         <br/><br/>
+        {% endif %}
     </article>
 </section>
 {% endblock %}

@@ -48,8 +48,8 @@ else:
 INSTALLED_APPS = [
     'save_favorite.apps.SaveFavoriteConfig',
     'db_commands.apps.DbCommandsConfig',
-    'food_selector.apps.food_selectorConfig',
-    'account.apps.accountConfig',
+    'food_selector.apps.FoodSelectorConfig',
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'nutella_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # on utilise l'adaptateur postgresql
-        'NAME': 'nutella', # le nom de notre base de donnees creee precedemment
-        'USER': 'postgres', # attention : remplacez par votre nom d'utilisateur
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nutella',
+        'USER': 'postgres',
         'PASSWORD': 'Wzk2mpbapo12@',
         'HOST': '',
         'PORT': '5432',
@@ -147,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'food_selector:connexion'
+LOGIN_URL = 'account:connexion'
 
 INTERNAL_IPS = ['127.0.0.1']
 

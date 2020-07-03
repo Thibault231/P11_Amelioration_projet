@@ -6,10 +6,8 @@ Views:
 -item:@transaction.non_atomic_requests
 -legal(request)
 """
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.db import transaction
-from .models import FoodItem, Account
+from .models import FoodItem
 
 
 def index(request):
@@ -31,9 +29,9 @@ def result(request):
     Returns:
     -template -- result.html
     """
-    try: 
+    try:
         item_name = (request.POST['item_name']).lower()
-        if  item_name == "":
+        if item_name == "":
             return render(request, '404.html')
         food_item = (get_list_or_404(FoodItem, name__icontains=item_name))[0]
         category_item = food_item.linked_cat.all()
@@ -47,7 +45,7 @@ def result(request):
         }
         return render(request, 'food_selector/result.html', context)
     except ValueError:
-        return render(request, '404.html')        
+        return render(request, '404.html')
     else:
         return render(request, '404.html')
 

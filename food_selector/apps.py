@@ -4,7 +4,7 @@
 from django.apps import AppConfig
 
 
-class food_selectorConfig(AppConfig):
+class FoodSelectorConfig(AppConfig):
     """Create APP food_selector.
     """
     name = 'food_selector'
