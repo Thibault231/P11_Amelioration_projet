@@ -38,21 +38,26 @@ class TestUserTakesTheTest(LiveServerTestCase):
         The user then go to the account_creation page and quit.
         """
         driver = self.driver
+
         wait = WebDriverWait(self.driver, 10)
         driver.get(TESTS['UrlApp'])
         driver.find_element(
             By.NAME, "item_name").send_keys("cassoulet" + Keys.RETURN)
+
         wait.until(EC.presence_of_element_located((By.ID, "resultBox")))
         first_url = driver.current_url
         driver.find_element_by_class_name('itemResult').click()
+
         wait.until(EC.presence_of_element_located((By.ID, "itemBox")))
         second_url = driver.current_url
         driver.find_element(By.ID, "create").click()
         WebDriverWait(self.driver, 2)
         third_url = driver.current_url
+
         wait.until(EC.presence_of_element_located((By.ID, "creationBox")))
         driver.find_element(By.ID, "index").click()
         last_url = driver.current_url
+
         self.assertEqual(TESTS['UrlResult'], first_url)
         self.assertEqual(TESTS['UrlItem'], second_url)
         self.assertEqual(TESTS['UrlCreation'], third_url)
@@ -75,20 +80,21 @@ class TestUserTakesTheTest(LiveServerTestCase):
         driver.find_element(By.ID, "id_last_name").send_keys("azerty")
         driver.find_element(By.ID, "id_email").send_keys("azerty@gmail.com")
         driver.find_element(
-            By.ID, "id_password1").send_keys("azerty" + Keys.RETURN)
+            By.ID, "id_password1").send_keys("azerty")
         driver.find_element(
             By.ID, "id_password2").send_keys("azerty" + Keys.RETURN)
         
+        wait.until(EC.presence_of_element_located((By.ID, "logout")))
         driver.find_element(By.ID, "logout").click()
-        wait.until(EC.presence_of_element_located((By.ID, "portfolio")))
-        forth_url = driver.current_url
-
+ 
         wait.until(EC.presence_of_element_located((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
+
         wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
         driver.find_element(By.NAME, "email").send_keys("azerty@gmail.com")
         driver.find_element(
             By.NAME, "password").send_keys("azerty" + Keys.RETURN)
+
         wait.until(EC.presence_of_element_located((By.ID, "myaccount")))
         first_url = driver.current_url
 
@@ -98,11 +104,11 @@ class TestUserTakesTheTest(LiveServerTestCase):
         second_url = driver.current_url
 
         driver.find_element(By.CLASS_NAME, "saveItem").click()
-        wait.until(EC.presence_of_element_located((By.ID, "saveBox")))
+        wait.until(EC.presence_of_element_located((By.ID, "logout")))
         third_url = driver.current_url
 
         driver.find_element(By.ID, "logout").click()
-        wait.until(EC.presence_of_element_located((By.ID, "portfolio")))
+        wait.until(EC.presence_of_element_located((By.ID, "index")))
         forth_url = driver.current_url
 
         self.assertEqual(TESTS['UrlConnexion'], first_url)
@@ -137,18 +143,22 @@ class TestUserTakesTheTest(LiveServerTestCase):
 
         wait.until(EC.presence_of_element_located((By.ID, "myaccount")))
         driver.find_element(By.ID, 'myaccount').click()
+
         wait.until(EC.presence_of_element_located((By.ID, "delete")))
         forth_url = driver.current_url
         driver.find_element(By.ID, 'delete').click()
+
         wait.until(EC.presence_of_element_located((By.ID, "delete2")))
         fifth_url = driver.current_url
         driver.find_element(By.ID, 'delete2').click()
+
         wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
         sixth_url = driver.current_url
+        driver.find_element(By.ID, 'index').click()
 
         self.assertEqual(TESTS['UrlConnexion'], first_url)
         self.assertEqual(TESTS['UrlAccount'], second_url)
         self.assertEqual(TESTS['UrlHistory'], third_url)
-        self.assertEqual(TESTS['UrlUrlAccount'], forth_url)
+        self.assertEqual(TESTS['UrlAccount'], forth_url)
         self.assertEqual(TESTS['UrlDeleteConfirm'], fifth_url)
         self.assertEqual(TESTS['UrlDeleteDone'], sixth_url)

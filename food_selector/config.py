@@ -39,7 +39,7 @@ TESTS = {
     "UrlDeconnexion":
     "https://amelioratenutella.herokuapp.com/account/deconnexion/",
     "UrlDeleteConfirm":
-    "https://amelioratenutella.herokuapp.com/account/delete_confirmation/"
+    "https://amelioratenutella.herokuapp.com/account/delete_confirmation/",
     "UrlDeleteDone":
-    "https://amelioratenutella.herokuapp.com/account/delete_done/"
+    "https://amelioratenutella.herokuapp.com/account/delete_user/"
 }
