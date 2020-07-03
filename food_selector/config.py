@@ -26,16 +26,20 @@ TESTS = {
     "RightStatus": 200,
     "UnfoundStatus": 404,
     "WrongStatus": 302,
-    "UrlApp": "https://djangonutella.herokuapp.com/",
-    "UrlResult": "https://djangonutella.herokuapp.com/food_selector/result/",
-    "UrlHistory": "https://djangonutella.herokuapp.com/food_selector/history/",
-    "UrlAccount": "https://djangonutella.herokuapp.com/account/myaccount/",
+    "UrlApp": "https://amelioratenutella.herokuapp.com/",
+    "UrlResult": "https://amelioratenutella.herokuapp.com/food_selector/result/",
+    "UrlHistory": "https://amelioratenutella.herokuapp.com/save_favorite/history/",
+    "UrlAccount": "https://amelioratenutella.herokuapp.com/account/myaccount/",
     "UrlCreation":
-    "https://djangonutella.herokuapp.com/account/account_creation/",
+    "https://amelioratenutella.herokuapp.com/account/account_creation/",
     "UrlConnexion":
-    "https://djangonutella.herokuapp.com/account/connexion/",
-    "UrlItem": "https://djangonutella.herokuapp.com/food_selector/item/21/",
-    "UrlSave": "https://djangonutella.herokuapp.com/food_selector/save/21/",
+    "https://amelioratenutella.herokuapp.com/account/connexion/",
+    "UrlItem": "https://amelioratenutella.herokuapp.com/food_selector/item/20/",
+    "UrlSave": "https://amelioratenutella.herokuapp.com/save_favorite/save/20/",
     "UrlDeconnexion":
-    "https://djangonutella.herokuapp.com/account/deconnexion/"
+    "https://amelioratenutella.herokuapp.com/account/deconnexion/",
+    "UrlDeleteConfirm":
+    "https://amelioratenutella.herokuapp.com/account/delete_confirmation/"
+    "UrlDeleteDone":
+    "https://amelioratenutella.herokuapp.com/account/delete_done/"
 }

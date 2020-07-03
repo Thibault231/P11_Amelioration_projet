@@ -19,8 +19,9 @@
             <br/><br/>
             <p><button class="btn bg-bonrig"><a style="color:black" href="{% url 'password_change' %}"></p>
                 Changer mon mot de passe</a></button>
-                <p><button class="btn bg-bonrig"><a style="color:black" href="{% url 'account:delete_confirmation' %}"></p>
-                Supprimer mon compte</a></button>
+                <p><button class="btn bg-bonrig" id='delete'>
+                    <a style="color:black" href="{% url 'account:delete_confirmation' %}">
+                Supprimer mon compte</a></button></p>
         </div>
     </article>
 

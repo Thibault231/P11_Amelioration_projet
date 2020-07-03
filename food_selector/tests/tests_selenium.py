@@ -67,6 +67,22 @@ class TestUserTakesTheTest(LiveServerTestCase):
         driver = self.driver
         wait = WebDriverWait(self.driver, 10)
         driver.get(TESTS['UrlApp'])
+        wait.until(EC.presence_of_element_located((By.ID, "create")))
+        driver.find_element(By.ID, 'create').click()
+        wait.until(EC.presence_of_element_located((By.ID, "id_password2")))
+        driver.find_element(By.ID, "id_username").send_keys("azerty")
+        driver.find_element(By.ID, "id_first_name").send_keys("azerty")
+        driver.find_element(By.ID, "id_last_name").send_keys("azerty")
+        driver.find_element(By.ID, "id_email").send_keys("azerty@gmail.com")
+        driver.find_element(
+            By.ID, "id_password1").send_keys("azerty" + Keys.RETURN)
+        driver.find_element(
+            By.ID, "id_password2").send_keys("azerty" + Keys.RETURN)
+        
+        driver.find_element(By.ID, "logout").click()
+        wait.until(EC.presence_of_element_located((By.ID, "portfolio")))
+        forth_url = driver.current_url
+
         wait.until(EC.presence_of_element_located((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
         wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
@@ -119,6 +135,20 @@ class TestUserTakesTheTest(LiveServerTestCase):
         wait.until(EC.presence_of_element_located((By.ID, "historyBox")))
         third_url = driver.current_url
 
+        wait.until(EC.presence_of_element_located((By.ID, "myaccount")))
+        driver.find_element(By.ID, 'myaccount').click()
+        wait.until(EC.presence_of_element_located((By.ID, "delete")))
+        forth_url = driver.current_url
+        driver.find_element(By.ID, 'delete').click()
+        wait.until(EC.presence_of_element_located((By.ID, "delete2")))
+        fifth_url = driver.current_url
+        driver.find_element(By.ID, 'delete2').click()
+        wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
+        sixth_url = driver.current_url
+
         self.assertEqual(TESTS['UrlConnexion'], first_url)
         self.assertEqual(TESTS['UrlAccount'], second_url)
         self.assertEqual(TESTS['UrlHistory'], third_url)
+        self.assertEqual(TESTS['UrlUrlAccount'], forth_url)
+        self.assertEqual(TESTS['UrlDeleteConfirm'], fifth_url)
+        self.assertEqual(TESTS['UrlDeleteDone'], sixth_url)
