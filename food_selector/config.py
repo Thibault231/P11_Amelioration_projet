@@ -23,6 +23,8 @@ CATEGORIES_LIST = [
 TESTS = {
     "name1": "impossible",
     "name2": "hellfest",
+    "name3": "impossible2",
+    "name4": "hellfest2",
     "RightStatus": 200,
     "UnfoundStatus": 404,
     "WrongStatus": 302,

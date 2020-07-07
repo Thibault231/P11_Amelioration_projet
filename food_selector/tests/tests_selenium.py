@@ -162,3 +162,70 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.assertEqual(TESTS['UrlAccount'], forth_url)
         self.assertEqual(TESTS['UrlDeleteConfirm'], fifth_url)
         self.assertEqual(TESTS['UrlDeleteDone'], sixth_url)
+
+
+    def test_user_modify_informations(self):
+        """[summary]User createq a new account, then modify the
+        password and log out. After loging out, the user go to the log in page
+        and ask for losing its password. Finally the user log in and
+        delete its account.
+        """
+        driver = self.driver
+
+        # Create account
+        wait = WebDriverWait(self.driver, 10)
+        driver.get(TESTS['UrlApp'])
+        wait.until(EC.presence_of_element_located((By.ID, "create")))
+        driver.find_element(By.ID, 'create').click()
+        wait.until(EC.presence_of_element_located((By.ID, "id_password2")))
+        driver.find_element(By.ID, "id_username").send_keys(TESTS["name1"])
+        driver.find_element(By.ID, "id_first_name").send_keys(TESTS["name1"])
+        driver.find_element(By.ID, "id_last_name").send_keys(TESTS["name1"])
+        driver.find_element(By.ID, "id_email").send_keys(TESTS["name1"]+"@gmail.com")
+        driver.find_element(
+            By.ID, "id_password1").send_keys(TESTS["name1"])
+        driver.find_element(
+            By.ID, "id_password2").send_keys(TESTS["name1"] + Keys.RETURN)
+        
+        # Change password
+        wait.until(EC.presence_of_element_located((By.ID, "myaccount")))
+        driver.find_element(By.ID, 'myaccount').click()
+
+        wait.until(EC.presence_of_element_located((By.ID, "changepassword")))
+        driver.find_element(By.ID, "changepassword").click()
+
+        wait.until(EC.presence_of_element_located((By.ID, "password")))
+        driver.find_element(By.NAME, "password").send_keys(TESTS["name1"])
+        driver.find_element(By.NAME, "password1").send_keys(TESTS["name4"])
+        driver.find_element(
+            By.NAME, "password2").send_keys(TESTS["name4"] + Keys.RETURN)
+        
+        wait.until(EC.presence_of_element_located((By.ID, "logout")))
+        driver.find_element(By.ID, "logout").click()
+
+        # Reset password
+        wait.until(EC.presence_of_element_located((By.ID, "login")))
+        driver.find_element(By.ID, 'login').click()
+
+        wait.until(EC.presence_of_element_located((By.ID, "resetpass")))
+        driver.find_element(By.ID, 'resetpass').click()
+
+        wait.until(EC.presence_of_element_located((By.ID, "id_email")))
+        driver.find_element(
+            By.NAME, "id_email").send_keys(TESTS["name1"]+"@gamil.com" + Keys.RETURN)
+        
+        # delete account
+        wait.until(EC.presence_of_element_located((By.ID, "login")))
+        driver.find_element(By.ID, 'login').click()
+        driver.find_element(By.NAME, "email").send_keys(TESTS["name1"]+"@gmail.com")
+        driver.find_element(
+            By.NAME, "password").send_keys(TESTS["name4"] + Keys.RETURN)
+        wait.until(EC.presence_of_element_located((By.ID, "myaccount")))
+        driver.find_element(By.ID, 'myaccount').click()
+        wait.until(EC.presence_of_element_located((By.ID, "delete")))
+        forth_url = driver.current_url
+        driver.find_element(By.ID, 'delete').click()
+        wait.until(EC.presence_of_element_located((By.ID, "delete2")))
+        fifth_url = driver.current_url
+        driver.find_element(By.ID, 'delete2').click()
+        wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
