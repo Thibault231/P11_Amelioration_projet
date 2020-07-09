@@ -48,5 +48,9 @@ TESTS = {
     "UrlDeleteConfirm":
     "https://amelioratenutella.herokuapp.com/account/delete_confirmation/",
     "UrlDeleteDone":
-    "https://amelioratenutella.herokuapp.com/account/delete_user/"
+    "https://amelioratenutella.herokuapp.com/account/delete_user/",
+    "UrlPasswordChange":
+    "https://amelioratenutella.herokuapp.com/password_change/",
+    "UrlPasswordReset":
+    "https://amelioratenutella.herokuapp.com/account/password_reset/"
 }

@@ -31,10 +31,11 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.driver.quit()
 
     def test_user_unlog(self):
-        """[summary]Tests the user's route starting with
-        the index page, the a research on an substitute and
-        a click for more information on the result.
-        The user then go to the account_creation page and quit.
+        """The user start on the index page.
+        It search for a substitute of the fooditem 'cassoulet'.
+        Once the result dusplayed, the user click on the wikilink
+        for more informations.
+        At least the user goes to the account_creation page and quit.
         """
         driver = self.driver
 
@@ -63,10 +64,9 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.assertEqual(TESTS['UrlApp'], last_url)
 
     def test_user_add_product(self):
-        """[summary]Tests the user's loging route starting with
-        the index page, then a loging on the page connexion and
-        a click for consulting the page 'myaccount'.
-        The user then runs a research and save the result.
+        """The user create an account, go to its account page
+        and search a substitute for the fooditem'cassoulet'.
+        Once the result displayed, it's save and the user logout.
         """
         driver = self.driver
         wait = WebDriverWait(self.driver, 10)
@@ -104,9 +104,8 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.assertEqual(TESTS['UrlDeconnexion'], forth_url)
 
     def test_user_log(self):
-        """[summary]Tests the user's loging route starting with
-        the index page, then a loging on the page connexion and
-        and consult one's account and one's history pages.
+        """[summary]The user loging, go on its history page,
+        then its account page. Finally it delte its account.
         """
         driver = self.driver
         wait = WebDriverWait(self.driver, 10)
@@ -149,9 +148,10 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.assertEqual(TESTS['UrlApp'], sixth_url)
 
     def test_user_modify_informations(self):
-        """[summary]User createq a new account, then modify the
-        password and log out. After loging out, the user go to the log in page
-        and ask for losing its password. Finally the user log in and
+        """[summary]User create a new account, then change the
+        password from its space account and log out. 
+        After loging out, the user go to the login page
+        and ask for losing its password. Finally the user login and
         delete its account.
         """
         driver = self.driver
@@ -171,19 +171,22 @@ class TestUserTakesTheTest(LiveServerTestCase):
             By.ID, "id_password1").send_keys(TESTS["name1"])
         driver.find_element(
             By.ID, "id_password2").send_keys(TESTS["name1"] + Keys.RETURN)
-        
+        first_url = driver.current_url
+
         # Change password
         wait.until(EC.element_to_be_clickable((By.ID, "myaccount")))
         driver.find_element(By.ID, 'myaccount').click()
 
         wait.until(EC.element_to_be_clickable((By.ID, "changepassword")))
         driver.find_element(By.ID, "changepassword").click()
+        second_url = driver.current_url
 
         wait.until(EC.presence_of_element_located((By.ID, "id_new_password2")))
         driver.find_element(By.ID, "id_old_password").send_keys(TESTS["name1"])
         driver.find_element(By.ID, "id_new_password1").send_keys(TESTS["name4"])
         driver.find_element(
             By.ID, "id_new_password2").send_keys(TESTS["name4"] + Keys.RETURN)
+        third_url = driver.current_url
 
         wait.until(EC.element_to_be_clickable((By.ID, 'logout')))
         driver.find_element(By.ID, 'logout').click()
@@ -193,12 +196,15 @@ class TestUserTakesTheTest(LiveServerTestCase):
 
         wait.until(EC.element_to_be_clickable((By.ID, 'resetpass')))
         driver.find_element(By.ID, 'resetpass').click()
+        forth_url = driver.current_url
 
         wait.until(EC.presence_of_element_located((By.ID, "id_email")))
         driver.find_element(
             By.ID, "id_email").send_keys(TESTS["name1"]+"@gmail.com" + Keys.RETURN)
+        fifth_url = driver.current_url
+
         # delete account
-        wait.until(EC.presence_of_element_located((By.ID, "login")))
+        wait.until(EC.element_to_be_clickable((By.ID, "login")))
         driver.find_element(By.ID, 'login').click()
         wait.until(EC.presence_of_element_located((By.ID, "accountBox")))
         driver.find_element(By.ID, "id_email").send_keys(TESTS["name1"]+"@gmail.com")
@@ -215,5 +221,10 @@ class TestUserTakesTheTest(LiveServerTestCase):
         wait.until(EC.element_to_be_clickable((By.ID, 'index')))
         sixth_url = driver.current_url
 
+        self.assertEqual(TESTS['UrlCreation'], first_url)
+        self.assertEqual(TESTS['UrlPasswordChange'], second_url)
+        self.assertEqual(TESTS['UrlPasswordChange'], third_url)
+        self.assertEqual(TESTS['UrlPasswordReset'], forth_url)
+        self.assertEqual(TESTS['UrlPasswordReset'], fifth_url)
         self.assertEqual(TESTS['UrlDeleteDone'], sixth_url)
         
